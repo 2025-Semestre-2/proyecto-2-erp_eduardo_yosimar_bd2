@@ -73,7 +73,7 @@ export default function TablaInventario({ facturas }) {
                             <td className="px-4 py-2">
                                 <button
                                     onClick={() => detalleFacturas(factura.NumeroFactura)}
-                                    className="px-3 py-1 bg-emerald-600 text-white text-sm rounded hover:bg-emerald-700 transition">
+                                    className="px-3 py-1 bg-sky-600 text-white text-sm rounded hover:bg-sky-700 transition">
                                         Ver detalles
                                 </button>
                             </td>
@@ -94,8 +94,8 @@ export default function TablaInventario({ facturas }) {
                             className={`px-3 py-1 rounded text-sm font-medium transition ${
                                 // Hacer algo para cambiar el color quedo bien feo y no se en cual esta.
                             paginaActual === i + 1
-                                ? 'bg-emerald-600 text-white shadow'
-                                : 'bg-emerald-100 text-gray-700 hover:bg-emerald-200'
+                                ? 'bg-sky-600 text-white shadow'
+                                : 'bg-sky-100 text-gray-700 hover:bg-sky-200'
                             }`} >
                             {i + 1}
                         </button>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 // Importar estilos
@@ -18,10 +17,8 @@ import Estadisticas from './Pages/Estadisticas.jsx';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
-    <div >
+    <div className='app-container'>
       {/* Header de las paginas, al definirlo aqui lo podermos compartir. */}
       <Header/>
 

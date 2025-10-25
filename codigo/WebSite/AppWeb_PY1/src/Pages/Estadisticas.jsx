@@ -211,7 +211,7 @@ function Estadisticas() {
               <button
                 onClick={() => setEstadisticaSeleccionada(estadistica.id)}
                 className={`inline-block p-4 border-b-2 rounded-t-lg transition ${
-                  estadisticaSeleccionada === estadistica.id ? 'text-emerald-800 border-emerald-800 font-semibold' : 'border-transparent hover:text-gray-800 hover:border-gray-500'
+                  estadisticaSeleccionada === estadistica.id ? 'text-sky-800 border-sky-800 font-semibold' : 'border-transparent hover:text-gray-800 hover:border-gray-500'
                 }`}>
                 {estadistica.nombre}
               </button>
@@ -240,7 +240,7 @@ function Estadisticas() {
 
 
       {/* Resultados */}
-      <div className="bg-emerald-50 shadow rounded p-4">
+      <div className="bg-sky-50 shadow rounded p-4">
         <h3 className="text-lg font-semibold text-gray-700 mb-2">Resultados de la estadistica</h3>
         {/* <p className="text-gray-500 italic">Aqui mostraremos las estadisticas del programa...algun dia.</p> */}
         {/* {renderizarResultados()} */}

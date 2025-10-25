@@ -73,7 +73,7 @@ function Inventario() {
 
       {/* <TablaInventario productos={resultados} /> */}
 
-      <div className="bg-emerald-100 border border-emerald-200 shadow-md rounded-md p-6 ">
+      <div className="bg-sky-100 border border-sky-200 shadow-md rounded-md p-6 ">
         {resultados.length === 0 ? (
           <p className="text-sm text-slate-500 italic">No hay resultados para mostrar. Intenta realizar una busqueda.</p> ) : ( <TablaInventario productos={resultados} />)
         }

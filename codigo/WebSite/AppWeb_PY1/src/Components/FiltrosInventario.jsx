@@ -9,7 +9,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
     // Metodo para cargar los datos generales y guardarlos.
 
     return (
-        <div className="bg-emerald-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
+        <div className="bg-sky-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                 <div>
@@ -21,7 +21,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
                         value={filtros.nombreproducto}
                         onChange={onChange}
                         placeholder="Buscar por nombre"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Grupo del producto. */}
@@ -33,7 +33,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
                         value={filtros.grupo}
                         onChange={onChange}
                         placeholder="Grupo del producto"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Cantidad minima de producto, estos deberian de tener un minimo de 0 */}
@@ -47,7 +47,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
                         min={0}
                         max={1035000}
                         placeholder="Ej. 0"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Cantidad maxima de producto */}
@@ -61,7 +61,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
                         min={0}
                         max={1035000}
                         placeholder="Ej. 100"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
             </div>
@@ -78,7 +78,7 @@ export default function FiltrosInventario({ filtros, onChange, onAplicar, onRest
 
                 <button
                     onClick={onAplicar}
-                    className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">
+                    className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition">
                     Aplicar filtros
                 </button>
             </div>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import FiltrosClientes from '../Components/FiltrosClientes.jsx';
 import TablaClientes from '../Components/TablaClientes.jsx';
 // Importar el servicios del API.
-import { obtenerClientesFiltrados, obtenerClientePorID } from '../Services/ClienteAPI.js';
+import { obtenerClientesFiltrados } from '../Services/ClienteAPI.js';
 
 
 function Clientes() {
@@ -66,7 +66,7 @@ function Clientes() {
         <p className="text-gray-500 italic">Aqui se mostrara la tabla algun dia.</p>
       </div> */}
 
-      <div className="bg-emerald-100 border border-emerald-200 shadow-md rounded-md p-6 ">
+      <div className="bg-sky-100 border border-sky-200 shadow-md rounded-md p-6 ">
         {resultados.length === 0 ? (
           <p className="text-sm text-slate-500 italic">No hay resultados para mostrar. Intenta realizar una busqueda.</p> ) : ( <TablaClientes clientes={resultados} />)
         }

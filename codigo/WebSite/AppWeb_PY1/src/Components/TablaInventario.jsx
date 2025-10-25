@@ -41,7 +41,7 @@ export default function TablaInventario({ productos }) {
     };
 
     return (
-        <div className="bg-white border-emerald-200 shadow-md rounded-md overflow-x-auto">
+        <div className="bg-white border-sky-200 shadow-md rounded-md overflow-x-auto">
             {/* Tabla en la que se muestran los datos de los clientes. */}
             <table className="min-w-full divide-y divide-gray-500">
                 {/* Aqui se definen las columnas que tendra la tabla. Esto se puede modificar para usar en las demas vistas. */}
@@ -72,7 +72,7 @@ export default function TablaInventario({ productos }) {
                             <td className="px-4 py-2">
                                 <button
                                     onClick={() => detalleProducto(producto.ProductID)}
-                                    className="px-3 py-1 bg-emerald-600 text-white text-sm rounded hover:bg-emerald-700 transition">
+                                    className="px-3 py-1 bg-sky-600 text-white text-sm rounded hover:bg-sky-700 transition">
                                         Ver detalles
                                 </button>
                             </td>
@@ -93,8 +93,8 @@ export default function TablaInventario({ productos }) {
                             className={`px-3 py-1 rounded text-sm font-medium transition ${
                                 // Hacer algo para cambiar el color quedo bien feo y no se en cual esta.
                             paginaActual === i + 1
-                                ? 'bg-emerald-600 text-white shadow'
-                                : 'bg-emerald-100 text-gray-700 hover:bg-emerald-200'
+                                ? 'bg-sky-600 text-white shadow'
+                                : 'bg-sky-100 text-gray-700 hover:bg-sky-200'
                             }`} >
                             {i + 1}
                         </button>

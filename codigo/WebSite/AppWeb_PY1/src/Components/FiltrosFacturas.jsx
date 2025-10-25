@@ -9,7 +9,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
     // Metodo para cargar los datos generales y guardarlos.
 
     return (
-        <div className="bg-emerald-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
+        <div className="bg-sky-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                 <div>
@@ -21,7 +21,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         value={filtros.numeroFactura}
                         onChange={onChange}
                         placeholder="Buscar por numero de factura"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 <div>
@@ -33,7 +33,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         value={filtros.nombreCliente}
                         onChange={onChange}
                         placeholder="Buscar por nombre del cliente"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Fecha minima para realizar la busqueda */}
@@ -47,7 +47,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         min={"2013-01-01"}
                         max={"2016-06-01"}
                         placeholder="Fecha minima de la busqueda"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Fecha maxima para realizar la busqueda */}
@@ -61,7 +61,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         min={"2013-01-01"}
                         max={"2016-06-01"}
                         placeholder="Fecha maxima de la busqueda"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Cantidad minima de producto, estos deberian de tener un minimo de 0*/}
@@ -74,7 +74,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         onChange={onChange}
                         min={0}
                         placeholder="Ej. 0"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 {/* Cantidad maxima de producto */}
@@ -88,7 +88,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
                         min={0}
                         max={37000}
                         placeholder="Ej. 37000"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
             </div>
@@ -105,7 +105,7 @@ export default function FiltrosFacturas({ filtros, onChange, onAplicar, onRestau
 
                 <button
                     onClick={onAplicar}
-                    className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">
+                    className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition">
                     Aplicar filtros
                 </button>
             </div>

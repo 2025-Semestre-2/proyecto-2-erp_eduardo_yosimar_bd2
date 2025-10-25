@@ -34,7 +34,7 @@ export default function FiltrosProveedores({ filtros, onChange, onAplicar, onRes
   }, []);
 
     return (
-        <div className="bg-emerald-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
+        <div className="bg-sky-50 text-slate-800 shadow-md rounded-md p-6 mb-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Nombre del del proveedor</label>
@@ -44,7 +44,7 @@ export default function FiltrosProveedores({ filtros, onChange, onAplicar, onRes
                         value={filtros.nombre}
                         onChange={onChange}
                         placeholder="Buscar por nombre"
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"/>
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"/>
                 </div>
 
                 <div>
@@ -54,7 +54,7 @@ export default function FiltrosProveedores({ filtros, onChange, onAplicar, onRes
                         name="categoria"
                         value={filtros.categoria}
                         onChange={onChange}
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500">
                         <option value="">No aplicar</option>
 
                         {/* Esta deben de ser dinamicas y cargarse con los datos de la base de datos. */}
@@ -75,7 +75,7 @@ export default function FiltrosProveedores({ filtros, onChange, onAplicar, onRes
                         name="metodoEntrega"
                         value={filtros.metodoEntrega}
                         onChange={onChange}
-                        className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500">
                         <option value="">No aplicar</option>
 
                         {/* Estos deberan ser cargados dinamicamente. */}
@@ -107,7 +107,7 @@ export default function FiltrosProveedores({ filtros, onChange, onAplicar, onRes
 
                 <button
                     onClick={onAplicar}
-                    className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">
+                    className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition">
                     Aplicar filtros
                 </button>
             </div>

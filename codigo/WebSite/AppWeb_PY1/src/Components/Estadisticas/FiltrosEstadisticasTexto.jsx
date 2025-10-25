@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 
 function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave, valor }) {
 
@@ -39,7 +38,7 @@ function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave
 //   }, []);
 
   return (
-    <div className="bg-emerald-50 shadow-md rounded-md p-6">
+    <div className="bg-sky-50 shadow-md rounded-md p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
@@ -49,7 +48,7 @@ function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave
             value={filtros.nombre}
             onChange={onChange}
             placeholder="Buscar por nombre"
-            className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-50"
+            className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-50"
           />
         </div>
 
@@ -59,7 +58,7 @@ function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave
             name="categoria"
             value={filtros.categoria}
             onChange={onChange}
-            className="w-full border border-emerald-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-50">
+            className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-50">
 
             <option value="">No aplicar</option>
 
@@ -77,7 +76,7 @@ function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave
       <div className="mt-6 flex justify-end">
         <button
           onClick={onAplicar}
-          className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">
+          className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 transition">
           Aplicar filtros
         </button>
       </div>
