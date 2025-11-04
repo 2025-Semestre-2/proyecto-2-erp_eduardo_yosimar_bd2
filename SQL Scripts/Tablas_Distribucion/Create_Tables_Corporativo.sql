@@ -1,0 +1,1 @@
+-- Tablas para distribución de Corporativo

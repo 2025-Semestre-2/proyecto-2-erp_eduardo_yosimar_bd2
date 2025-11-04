@@ -1,0 +1,1 @@
+-- Vistas para replicación de Sucursal al Publicador
