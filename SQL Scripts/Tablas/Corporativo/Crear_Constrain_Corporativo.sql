@@ -1,5 +1,4 @@
--- Tabla de Cities.
-
+-- >> Tabla de Cities.
 ALTER TABLE [Application].[Cities] WITH CHECK ADD CONSTRAINT [FK_Cities_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
@@ -7,26 +6,26 @@ ALTER TABLE [Application].[Cities] WITH CHECK ADD CONSTRAINT [FK_Cities_StatePro
 FOREIGN KEY ([StateProvinceID]) REFERENCES [Application].[StateProvinces] ([StateProvinceID]);
 
 
--- Countries:
+-- >> Countries:
 ALTER TABLE [Application].[Countries] WITH CHECK ADD CONSTRAINT [FK_Countries_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
 
--- DeliveryMethods:
+-- >> DeliveryMethods:
 ALTER TABLE [Application].[DeliveryMethods] WITH CHECK ADD CONSTRAINT [FK_DeliveryMethods_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
 
--- PaymentMethods:
+-- >> PaymentMethods:
 ALTER TABLE [Application].[PaymentMethods] WITH CHECK ADD CONSTRAINT [FK_PaymentMethods_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
---  People:
+-- >> People:
 ALTER TABLE [Application].[People] WITH CHECK ADD CONSTRAINT [FK_People_LastEditedBy]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
 
--- StateProvinces:
+-- >> StateProvinces:
 -- FK hacia People
 ALTER TABLE [Application].[StateProvinces] WITH CHECK ADD CONSTRAINT [FK_StateProvinces_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
@@ -36,7 +35,7 @@ ALTER TABLE [Application].[StateProvinces] WITH CHECK ADD CONSTRAINT [FK_StatePr
 FOREIGN KEY ([CountryID]) REFERENCES [Application].[Countries] ([CountryID]);
 
 
--- SystemParameters:
+-- >> SystemParameters:
 -- FK hacia People
 ALTER TABLE [Application].[SystemParameters] WITH CHECK ADD CONSTRAINT [FK_SystemParameters_People]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
@@ -90,6 +89,10 @@ FOREIGN KEY ([DeliveryMethodID]) REFERENCES [Application].[DeliveryMethods] ([De
 -- FK hacia Suppliers
 ALTER TABLE [Purchasing].[PurchaseOrders] WITH CHECK ADD CONSTRAINT [FK_PurchaseOrders_Suppliers]
 FOREIGN KEY ([SupplierID]) REFERENCES [Purchasing].[Suppliers] ([SupplierID]);
+
+-- >> SupplierCategories
+ALTER TABLE [Purchasing].[SupplierCategories] WITH CHECK ADD CONSTRAINT [FK_Purchasing_SupplierCategories_Application_People]
+FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
 
 
 -- >> Suppliers
@@ -214,6 +217,19 @@ FOREIGN KEY ([PaymentMethodID]) REFERENCES [Application].[PaymentMethods] ([Paym
 ALTER TABLE [Sales].[CustomerTransactions] WITH CHECK ADD CONSTRAINT [FK_CustomerTransactions_TransactionTypes]
 FOREIGN KEY ([TransactionTypeID]) REFERENCES [Application].[TransactionTypes] ([TransactionTypeID]);
 
+
+-- InvoiceLines
+ALTER TABLE [Sales].[InvoiceLines] WITH CHECK ADD CONSTRAINT [FK_Sales_InvoiceLines_Application_People]
+FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
+
+ALTER TABLE [Sales].[InvoiceLines] WITH CHECK ADD CONSTRAINT [FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices]
+FOREIGN KEY ([InvoiceID]) REFERENCES [Sales].[Invoices] ([InvoiceID]);
+
+ALTER TABLE [Sales].[InvoiceLines] WITH CHECK ADD CONSTRAINT [FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes]
+FOREIGN KEY ([PackageTypeID]) REFERENCES [Warehouse].[PackageTypes] ([PackageTypeID]);
+
+ALTER TABLE [Sales].[InvoiceLines] WITH CHECK ADD CONSTRAINT [FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems]
+FOREIGN KEY ([StockItemID]) REFERENCES [Warehouse].[StockItems] ([StockItemID]);
 
 
 -- >> Invoices

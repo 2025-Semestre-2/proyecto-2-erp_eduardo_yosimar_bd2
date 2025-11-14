@@ -141,6 +141,15 @@ CREATE TABLE [Purchasing].[PurchaseOrders] (
   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 
+
+-- SupplierCategories
+CREATE TABLE [Purchasing].[SupplierCategories] (
+  [SupplierCategoryID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  [SupplierCategoryName] NVARCHAR(50) NOT NULL,
+  [LastEditedBy] INT NOT NULL,
+  CONSTRAINT [UQ_Purchasing_SupplierCategories_SupplierCategoryName] UNIQUE ([SupplierCategoryName])
+);
+
 -- Suppliers
 CREATE TABLE [Purchasing].[Suppliers] (
   [SupplierID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -198,7 +207,6 @@ CREATE TABLE [Sales].[BuyingGroups] (
   [BuyingGroupName] NVARCHAR(50) NOT NULL,
   [LastEditedBy] INT NOT NULL
 );
-
 
 
 
@@ -264,6 +272,23 @@ CREATE TABLE [Sales].[CustomerTransactions] (
   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 
+-- InvoiceLines
+CREATE TABLE [Sales].[InvoiceLines] (
+  [InvoiceLineID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+  [InvoiceID] INT NOT NULL,
+  [StockItemID] INT NOT NULL,
+  [Description] NVARCHAR(100) NOT NULL,
+  [PackageTypeID] INT NOT NULL,
+  [Quantity] INT NOT NULL,
+  [UnitPrice] DECIMAL(18,2) NULL,
+  [TaxRate] DECIMAL(18,3) NOT NULL,
+  [TaxAmount] DECIMAL(18,2) NOT NULL,
+  [LineProfit] DECIMAL(18,2) NOT NULL,
+  [ExtendedPrice] DECIMAL(18,2) NOT NULL,
+  [LastEditedBy] INT NOT NULL
+);
+
+
 -- Invoices
 CREATE TABLE [Sales].[Invoices] (
   [InvoiceID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -325,7 +350,8 @@ CREATE TABLE [Sales].[Orders] (
   [DeliveryInstructions] NVARCHAR(MAX) NULL,
   [InternalComments] NVARCHAR(MAX) NULL,
   [PickingCompletedWhen] DATETIME2(7) NULL,
-  [LastEditedBy] INT NOT NULL
+  [LastEditedBy] INT NOT NULL,
+  [Suculsal] NVARCHAR(50) NULL
   -- ,[LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 
@@ -392,7 +418,7 @@ CREATE TABLE [Warehouse].[StockGroups] (
 
 --  StockItemHoldings
 CREATE TABLE [Warehouse].[StockItemHoldings] (
-  [StockItemID] INT NOT NULL PRIMARY KEY,
+  [StockItemID] INT NOT NULL PRIMARY KEY, -- <- Esta esta directamente relacionada con la de productos, asi que no llevamos el identity.
   [QuantityOnHand] INT NOT NULL,
   [BinLocation] NVARCHAR(20) NOT NULL,
   [LastStocktakeQuantity] INT NOT NULL,
