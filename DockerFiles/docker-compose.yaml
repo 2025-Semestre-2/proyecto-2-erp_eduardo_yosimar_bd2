@@ -1,0 +1,42 @@
+services:
+  sqlserver_sanjose:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_sanjose
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SanJose123
+      - MSSQL_AGENT_ENABLED=true
+    ports:
+      - "1434:1433"
+    volumes:
+      - sanjose_data:/var/opt/mssql
+
+  sqlserver_limon:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_limon
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Limon123
+      - MSSQL_AGENT_ENABLED=true
+    ports:
+      - "1435:1433"
+    volumes:
+      - limon_data:/var/opt/mssql
+
+  sqlserver_corporativo:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_corporativo
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Corporativo123
+      - MSSQL_AGENT_ENABLED=true
+    ports:
+      - "1436:1433"
+    volumes:
+      - corporativo_data:/var/opt/mssql
+      # - /var/opt/mssql/data/ReplData:/var/opt/mssql/data/ReplData
+
+volumes:
+  sanjose_data:
+  limon_data:
+  corporativo_data:
