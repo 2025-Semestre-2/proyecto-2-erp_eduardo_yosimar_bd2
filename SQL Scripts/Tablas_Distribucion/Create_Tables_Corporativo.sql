@@ -20,7 +20,7 @@ CREATE TABLE Usuarios (
     username VARCHAR(50) NOT NULL,
     password_hash VARCHAR(255) NOT NULL, -- Pendiente a revisar
     fullname VARCHAR(100) NOT NULL,
-    active BIT NOT NULL DEFAULT 1
+    active BIT NOT NULL DEFAULT 1,
     rol VARCHAR(20) CHECK (rol IN ('Administrador', 'Corporativo')) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     hiredate DATETIME DEFAULT GETDATE(),

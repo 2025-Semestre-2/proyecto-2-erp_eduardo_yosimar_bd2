@@ -39,8 +39,6 @@ CREATE TABLE ClientesSanJose (
     IsOnCreditHold BIT NOT NULL,
     PaymentDays INT NOT NULL,
     LastEditedBy INT NOT NULL DEFAULT 1,
-    ValidFrom DATETIME2 NOT NULL DEFAULT GETDATE(),
-    ValidTo DATETIME2 NOT NULL DEFAULT '9999-12-31 23:59:59.9999999',
     Sucursal NVARCHAR(20) DEFAULT 'SanJose',
 );
 
