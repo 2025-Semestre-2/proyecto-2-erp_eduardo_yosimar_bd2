@@ -7,6 +7,24 @@ go
 
 -- Aqui van a ir la creacion base de las tablas 
 
+-- Tabla de usuarios para los del sistema 
+CREATE TABLE Usuarios (
+  iduser INT IDENTITY(1,1) PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL, -- Pendiente a revisar
+  fullname VARCHAR(100) NOT NULL,
+  active BIT NOT NULL DEFAULT 1,
+  rol VARCHAR(20) CHECK (rol IN ('Administrador', 'Corporativo')) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  hiredate DATETIME DEFAULT GETDATE(),
+  sucursal VARCHAR(20) CHECK (sucursal IN ('SanJose', 'Limon', 'Corporativo')) NOT NULL,
+  created_at DATETIME DEFAULT GETDATE(),
+  updated_at DATETIME DEFAULT GETDATE()
+);
+GO
+
+
+
 -- Tabla de Cities.
 CREATE TABLE [Application].[Cities] (
   [CityID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -221,37 +239,55 @@ CREATE TABLE [Sales].[CustomerCategories] (
 );
 
 -- Customers -> Esta es la que tenemos que separar, es la info completa de los clientes.
-CREATE TABLE [Sales].[Customers] (
+-- CREATE TABLE [Sales].[Customers] (
+--   [CustomerID] INT NOT NULL PRIMARY KEY IDENTITY(1,1), -- Ambas
+--   [CustomerName] NVARCHAR(100) NOT NULL, -- Ambas
+--   [BillToCustomerID] INT NOT NULL, -- Sucursal
+--   [CustomerCategoryID] INT NOT NULL, -- Sucursal
+--   [BuyingGroupID] INT NULL, -- Sucursal
+--   [PrimaryContactPersonID] INT NOT NULL, -- Corporativo
+--   [AlternateContactPersonID] INT NULL, -- Corporativo
+--   [DeliveryMethodID] INT NOT NULL, -- Sucursal
+--   [DeliveryCityID] INT NOT NULL, -- Sucursal
+--   [PostalCityID] INT NOT NULL, -- Sucursal
+--   [CreditLimit] DECIMAL(18,2) NULL, -- Corporativo
+--   [AccountOpenedDate] DATE NOT NULL, -- Sucursal
+--   [StandardDiscountPercentage] DECIMAL(18,3) NOT NULL, -- Sucursal
+--   [IsStatementSent] BIT NOT NULL, -- 
+--   [IsOnCreditHold] BIT NOT NULL,
+--   [PaymentDays] INT NOT NULL,
+--   [PhoneNumber] NVARCHAR(20) NOT NULL,
+--   [FaxNumber] NVARCHAR(20) NOT NULL,
+--   [DeliveryRun] NVARCHAR(5) NULL,
+--   [RunPosition] NVARCHAR(5) NULL,
+--   [WebsiteURL] NVARCHAR(256) NOT NULL,
+--   [DeliveryAddressLine1] NVARCHAR(60) NOT NULL,
+--   [DeliveryAddressLine2] NVARCHAR(60) NULL,
+--   [DeliveryPostalCode] NVARCHAR(10) NOT NULL,
+--   [DeliveryLocation] GEOGRAPHY NULL,
+--   [PostalAddressLine1] NVARCHAR(60) NOT NULL,
+--   [PostalAddressLine2] NVARCHAR(60) NULL,
+--   [PostalPostalCode] NVARCHAR(10) NOT NULL,
+--   [LastEditedBy] INT NOT NULL
+-- );
+
+
+CREATE TABLE [Sales].[ClientesDatosSensibles] (
   [CustomerID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   [CustomerName] NVARCHAR(100) NOT NULL,
-  [BillToCustomerID] INT NOT NULL,
-  [CustomerCategoryID] INT NOT NULL,
-  [BuyingGroupID] INT NULL,
-  [PrimaryContactPersonID] INT NOT NULL,
-  [AlternateContactPersonID] INT NULL,
-  [DeliveryMethodID] INT NOT NULL,
-  [DeliveryCityID] INT NOT NULL,
-  [PostalCityID] INT NOT NULL,
-  [CreditLimit] DECIMAL(18,2) NULL,
-  [AccountOpenedDate] DATE NOT NULL,
-  [StandardDiscountPercentage] DECIMAL(18,3) NOT NULL,
-  [IsStatementSent] BIT NOT NULL,
-  [IsOnCreditHold] BIT NOT NULL,
-  [PaymentDays] INT NOT NULL,
-  [PhoneNumber] NVARCHAR(20) NOT NULL,
-  [FaxNumber] NVARCHAR(20) NOT NULL,
-  [DeliveryRun] NVARCHAR(5) NULL,
-  [RunPosition] NVARCHAR(5) NULL,
-  [WebsiteURL] NVARCHAR(256) NOT NULL,
-  [DeliveryAddressLine1] NVARCHAR(60) NOT NULL,
-  [DeliveryAddressLine2] NVARCHAR(60) NULL,
-  [DeliveryPostalCode] NVARCHAR(10) NOT NULL,
-  [DeliveryLocation] GEOGRAPHY NULL,
-  [PostalAddressLine1] NVARCHAR(60) NOT NULL,
-  [PostalAddressLine2] NVARCHAR(60) NULL,
-  [PostalPostalCode] NVARCHAR(10) NOT NULL,
-  [LastEditedBy] INT NOT NULL
+    PhoneNumber NVARCHAR(20),
+    FaxNumber NVARCHAR(20),
+    WebsiteURL NVARCHAR(256),
+    DeliveryAddressLine1 NVARCHAR(60),
+    DeliveryAddressLine2 NVARCHAR(60),
+    DeliveryPostalCode NVARCHAR(10),
+    PostalAddressLine1 NVARCHAR(60),
+    PostalAddressLine2 NVARCHAR(60),
+    PostalPostalCode NVARCHAR(10),
+    DeliveryLocation GEOGRAPHY
 );
+GO
+
 
 
 -- CustomerTransactions
@@ -417,17 +453,17 @@ CREATE TABLE [Warehouse].[StockGroups] (
 );
 
 --  StockItemHoldings
-CREATE TABLE [Warehouse].[StockItemHoldings] (
-  [StockItemID] INT NOT NULL PRIMARY KEY, -- <- Esta esta directamente relacionada con la de productos, asi que no llevamos el identity.
-  [QuantityOnHand] INT NOT NULL,
-  [BinLocation] NVARCHAR(20) NOT NULL,
-  [LastStocktakeQuantity] INT NOT NULL,
-  [LastCostPrice] DECIMAL(18,2) NOT NULL,
-  [ReorderLevel] INT NOT NULL,
-  [TargetStockLevel] INT NOT NULL,
-  [LastEditedBy] INT NOT NULL
-  -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
-);
+-- CREATE TABLE [Warehouse].[StockItemHoldings] (
+--   [StockItemID] INT NOT NULL PRIMARY KEY, -- <- Esta esta directamente relacionada con la de productos, asi que no llevamos el identity.
+--   [QuantityOnHand] INT NOT NULL,
+--   [BinLocation] NVARCHAR(20) NOT NULL,
+--   [LastStocktakeQuantity] INT NOT NULL,
+--   [LastCostPrice] DECIMAL(18,2) NOT NULL,
+--   [ReorderLevel] INT NOT NULL,
+--   [TargetStockLevel] INT NOT NULL,
+--   [LastEditedBy] INT NOT NULL
+--   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
+-- );
 
 -- StockItems
 CREATE TABLE [Warehouse].[StockItems] (
