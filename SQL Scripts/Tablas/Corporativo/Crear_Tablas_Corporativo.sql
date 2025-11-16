@@ -139,7 +139,8 @@ CREATE TABLE [Purchasing].[PurchaseOrderLines] (
   [ExpectedUnitPricePerOuter] DECIMAL(18,2) NULL,
   [LastReceiptDate] DATE NULL,
   [IsOrderLineFinalized] BIT NOT NULL,
-  [LastEditedBy] INT NOT NULL
+  [LastEditedBy] INT NOT NULL,
+  
   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 
@@ -155,7 +156,8 @@ CREATE TABLE [Purchasing].[PurchaseOrders] (
   [IsOrderFinalized] BIT NOT NULL,
   [Comments] NVARCHAR(MAX) NULL,
   [InternalComments] NVARCHAR(MAX) NULL,
-  [LastEditedBy] INT NOT NULL
+  [LastEditedBy] INT NOT NULL,
+  [Sucursal] NVARCHAR(50) NULL
   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 
@@ -387,7 +389,7 @@ CREATE TABLE [Sales].[Orders] (
   [InternalComments] NVARCHAR(MAX) NULL,
   [PickingCompletedWhen] DATETIME2(7) NULL,
   [LastEditedBy] INT NOT NULL,
-  [Suculsal] NVARCHAR(50) NULL
+  [Sucursal] NVARCHAR(50) NULL
   -- ,[LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 

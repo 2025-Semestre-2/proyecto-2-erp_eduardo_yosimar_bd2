@@ -159,7 +159,8 @@ CREATE TABLE [Purchasing].[PurchaseOrders] (
   [IsOrderFinalized] BIT NOT NULL,
   [Comments] NVARCHAR(MAX) NULL,
   [InternalComments] NVARCHAR(MAX) NULL,
-  [LastEditedBy] INT NOT NULL
+  [LastEditedBy] INT NOT NULL,
+  [Sucursal] NVARCHAR(50) NULL
   -- ,  [LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 

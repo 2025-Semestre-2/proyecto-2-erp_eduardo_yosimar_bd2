@@ -212,7 +212,7 @@ SET IDENTITY_INSERT Purchasing.PurchaseOrders ON;
 INSERT INTO Purchasing.PurchaseOrders
     (PurchaseOrderID, SupplierID, OrderDate, DeliveryMethodID, ContactPersonID,
     ExpectedDeliveryDate, SupplierReference, IsOrderFinalized,
-    Comments, InternalComments, LastEditedBy)
+    Comments, InternalComments, LastEditedBy,Sucursal )
 SELECT
     PurchaseOrderID,
     SupplierID,
@@ -224,7 +224,8 @@ SELECT
     IsOrderFinalized,
     Comments,
     InternalComments,
-    LastEditedBy
+    LastEditedBy,
+    Sucursal 
 FROM WideWorldImporters.Purchasing.PurchaseOrders_Stage;
 
 SET IDENTITY_INSERT Purchasing.PurchaseOrderLines OFF;
@@ -510,7 +511,7 @@ INSERT INTO Sales.Orders
     (OrderID, CustomerID, SalespersonPersonID, PickedByPersonID, ContactPersonID,
     BackorderOrderID, OrderDate, ExpectedDeliveryDate, CustomerPurchaseOrderNumber,
     IsUndersupplyBackordered, Comments, DeliveryInstructions, InternalComments,
-    PickingCompletedWhen, LastEditedBy)
+    PickingCompletedWhen, LastEditedBy, Sucursal)
 SELECT
     OrderID,
     CustomerID,
@@ -526,7 +527,8 @@ SELECT
     DeliveryInstructions,
     InternalComments,
     PickingCompletedWhen,
-    LastEditedBy
+    LastEditedBy,
+    Sucursal 
 FROM WideWorldImporters.Sales.Orders_Stage; --where O.Sucursal = 'Limon';
 
 SET IDENTITY_INSERT Sales.Orders OFF;
