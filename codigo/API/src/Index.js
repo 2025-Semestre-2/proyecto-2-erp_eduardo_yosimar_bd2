@@ -36,6 +36,7 @@ const inventario = require('./Routes/InventarioRoutes');
 const facturas = require('./Routes/FacturasRoutes');
 const estadisticas = require('./Routes/EstadisticasRoutes');
 const datosGenerales = require('./Routes/DatosGeneralesRoutes');
+const sesion = require('./Routes/AutenticacionRoutes')
 
 // // Se agregan los endpoints al servidor.
 app.use('/api/clientes', clientes);
@@ -44,7 +45,7 @@ app.use('/api/inventario', inventario);
 app.use('/api/facturas', facturas);
 app.use('/api/estadisticas', estadisticas);
 app.use('/api/datosGenerales', datosGenerales);
-//app.use('/api/historial', buscarDepartamentos);
+app.use('/api/sesion', sesion);
 
 
 

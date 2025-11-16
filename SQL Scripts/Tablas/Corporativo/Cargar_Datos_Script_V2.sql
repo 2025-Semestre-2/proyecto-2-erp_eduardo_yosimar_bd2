@@ -31,7 +31,7 @@ SELECT
     Location, 
     LatestRecordedPopulation, 
     LastEditedBy
-FROM WideWorldImporters.Application.Cities;
+FROM WideWorldImporters.Application.Cities_Stage;
 
 SET IDENTITY_INSERT Application.Cities OFF; -- Activar el identity.
 
@@ -55,7 +55,7 @@ SELECT
     Subregion,
     Border,
     LastEditedBy
-FROM WideWorldImporters.Application.Countries;
+FROM WideWorldImporters.Application.Countries_Stage;
 
 SET IDENTITY_INSERT Application.Countries OFF;
 
@@ -70,7 +70,7 @@ SELECT
     DeliveryMethodID,
     DeliveryMethodName,
     LastEditedBy
-FROM WideWorldImporters.Application.DeliveryMethods;
+FROM WideWorldImporters.Application.DeliveryMethods_Stage;
 
 SET IDENTITY_INSERT Application.DeliveryMethods OFF;
 
@@ -84,7 +84,7 @@ SELECT
     PaymentMethodID,
     PaymentMethodName,
     LastEditedBy
-FROM WideWorldImporters.Application.PaymentMethods;
+FROM WideWorldImporters.Application.PaymentMethods_Stage;
 
 SET IDENTITY_INSERT Application.PaymentMethods OFF;
 
@@ -115,7 +115,7 @@ SELECT
     Photo,
     CustomFields,
     LastEditedBy
-FROM WideWorldImporters.Application.People;
+FROM WideWorldImporters.Application.People_Stage;
 
 SET IDENTITY_INSERT Application.People OFF;
 
@@ -136,7 +136,7 @@ SELECT
     Border,
     LatestRecordedPopulation,
     LastEditedBy
-FROM WideWorldImporters.Application.StateProvinces;
+FROM WideWorldImporters.Application.StateProvinces_Stage;
 
 SET IDENTITY_INSERT Application.StateProvinces OFF;
 
@@ -161,7 +161,7 @@ SELECT
     PostalPostalCode,
     ApplicationSettings,
     LastEditedBy
-FROM WideWorldImporters.Application.SystemParameters;
+FROM WideWorldImporters.Application.SystemParameters_Stage;
 
 SET IDENTITY_INSERT Application.SystemParameters OFF;
 
@@ -175,7 +175,7 @@ SELECT
     TransactionTypeID,
     TransactionTypeName,
     LastEditedBy
-FROM WideWorldImporters.Application.TransactionTypes;
+FROM WideWorldImporters.Application.TransactionTypes_Stage;
 
 SET IDENTITY_INSERT Application.TransactionTypes OFF;
 
@@ -200,7 +200,7 @@ SELECT
     LastReceiptDate,
     IsOrderLineFinalized,
     LastEditedBy
-FROM WideWorldImporters.Purchasing.PurchaseOrderLines;
+FROM WideWorldImporters.Purchasing.PurchaseOrderLines_Stage;
 
 SET IDENTITY_INSERT Purchasing.PurchaseOrderLines OFF;
 
@@ -225,7 +225,7 @@ SELECT
     Comments,
     InternalComments,
     LastEditedBy
-FROM WideWorldImporters.Purchasing.PurchaseOrders;
+FROM WideWorldImporters.Purchasing.PurchaseOrders_Stage;
 
 SET IDENTITY_INSERT Purchasing.PurchaseOrderLines OFF;
 
@@ -240,7 +240,7 @@ SELECT
     SupplierCategoryID,
     SupplierCategoryName,
     LastEditedBy
-FROM WideWorldImporters.Purchasing.SupplierCategories;
+FROM WideWorldImporters.Purchasing.SupplierCategories_Stage;
 
 SET IDENTITY_INSERT Purchasing.SupplierCategories OFF;
 
@@ -283,7 +283,7 @@ SELECT
     PostalAddressLine2,
     PostalPostalCode,
     LastEditedBy
-FROM WideWorldImporters.Purchasing.Suppliers;
+FROM WideWorldImporters.Purchasing.Suppliers_Stage;
 
 SET IDENTITY_INSERT Purchasing.Suppliers OFF;
 
@@ -310,7 +310,7 @@ SELECT
     OutstandingBalance,
     FinalizationDate,
     LastEditedBy
-FROM WideWorldImporters.Purchasing.SupplierTransactions;
+FROM WideWorldImporters.Purchasing.SupplierTransactions_Stage;
 
 SET IDENTITY_INSERT Purchasing.SupplierTransactions OFF;
 
@@ -325,7 +325,7 @@ SELECT
     BuyingGroupID,
     BuyingGroupName,
     LastEditedBy
-FROM WideWorldImporters.Sales.BuyingGroups;
+FROM WideWorldImporters.Sales.BuyingGroups_Stage;
 
 SET IDENTITY_INSERT Sales.BuyingGroups OFF;
 
@@ -339,7 +339,7 @@ SELECT
     CustomerCategoryID,
     CustomerCategoryName,
     LastEditedBy
-FROM WideWorldImporters.Sales.CustomerCategories;
+FROM WideWorldImporters.Sales.CustomerCategories_Stage;
 
 SET IDENTITY_INSERT Sales.CustomerCategories OFF;
 
@@ -386,7 +386,7 @@ SELECT
     PostalAddressLine2,
     PostalPostalCode,
     LastEditedBy
-FROM WideWorldImporters.Sales.Customers;
+FROM WideWorldImporters.Sales.Customers_Stage;
 
 SET IDENTITY_INSERT Sales.Customers OFF;
 
@@ -411,7 +411,7 @@ SELECT
     OutstandingBalance,
     FinalizationDate,
     LastEditedBy
-FROM WideWorldImporters.Sales.CustomerTransactions;
+FROM WideWorldImporters.Sales.CustomerTransactions_Stage;
 
 SET IDENTITY_INSERT Sales.CustomerTransactions OFF;
 
@@ -435,7 +435,7 @@ SELECT
     LineProfit,
     ExtendedPrice,
     LastEditedBy
-FROM WideWorldImporters.Sales.InvoiceLines;
+FROM WideWorldImporters.Sales.InvoiceLines_Stage;
 
 SET IDENTITY_INSERT Sales.InvoiceLines OFF;
 
@@ -473,7 +473,7 @@ SELECT
     RunPosition,
     ReturnedDeliveryData,
     LastEditedBy
-FROM WideWorldImporters.Sales.Invoices;
+FROM WideWorldImporters.Sales.Invoices_Stage;
 
 SET IDENTITY_INSERT Sales.Invoices OFF;
 
@@ -497,7 +497,7 @@ SELECT
     PickedQuantity,
     PickingCompletedWhen,
     LastEditedBy
-FROM WideWorldImporters.Sales.OrderLines;
+FROM WideWorldImporters.Sales.OrderLines_Stage;
 
 SET IDENTITY_INSERT Sales.OrderLines OFF;
 
@@ -527,7 +527,7 @@ SELECT
     InternalComments,
     PickingCompletedWhen,
     LastEditedBy
-FROM WideWorldImporters.Sales.Orders O; --where O.Sucursal = 'Limon';
+FROM WideWorldImporters.Sales.Orders_Stage; --where O.Sucursal = 'Limon';
 
 SET IDENTITY_INSERT Sales.Orders OFF;
 
@@ -553,7 +553,7 @@ SELECT
     DiscountPercentage,
     UnitPrice,
     LastEditedBy
-FROM WideWorldImporters.Sales.SpecialDeals;
+FROM WideWorldImporters.Sales.SpecialDeals_Stage;
 
 SET IDENTITY_INSERT Sales.SpecialDeals OFF;
 
