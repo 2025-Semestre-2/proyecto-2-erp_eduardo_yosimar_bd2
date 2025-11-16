@@ -263,6 +263,143 @@ GO
 
 
 
+-- >> Estos son para ponerlos en el suscriptor, estos no devuelven el id.
+
+-- Insertar un nuevo registro en StockItems
+CREATE PROCEDURE sp_AgregarStockItem_Suscriptor
+    @StockItemName NVARCHAR(100),
+    @SupplierID INT,
+    @ColorID INT = NULL,
+    @UnitPackageID INT,
+    @OuterPackageID INT,
+    @Brand NVARCHAR(50) = NULL,
+    @Size NVARCHAR(20) = NULL,
+    @LeadTimeDays INT,
+    @QuantityPerOuter INT,
+    @IsChillerStock BIT,
+    @Barcode NVARCHAR(50) = NULL,
+    @TaxRate DECIMAL(18,3),
+    @UnitPrice DECIMAL(18,2),
+    @RecommendedRetailPrice DECIMAL(18,2) = NULL,
+    @TypicalWeightPerUnit DECIMAL(18,3),
+    @MarketingComments NVARCHAR(MAX) = NULL,
+    @InternalComments NVARCHAR(MAX) = NULL,
+    @Photo VARBINARY(MAX) = NULL,
+    @CustomFields NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        -- Verificar que el nombre del item sea unico.
+        IF NOT EXISTS (SELECT 1 FROM Warehouse.StockItems WHERE StockItemName = @StockItemName)
+        BEGIN
+            INSERT INTO Warehouse.StockItems
+            (StockItemName, SupplierID, ColorID, UnitPackageID, OuterPackageID, Brand, Size, LeadTimeDays,
+            QuantityPerOuter, IsChillerStock, Barcode, TaxRate, UnitPrice, RecommendedRetailPrice,
+            TypicalWeightPerUnit, MarketingComments, InternalComments, Photo, CustomFields)
+            VALUES
+            (@StockItemName, @SupplierID, @ColorID, @UnitPackageID, @OuterPackageID, @Brand, @Size, @LeadTimeDays,
+            @QuantityPerOuter, @IsChillerStock, @Barcode, @TaxRate, @UnitPrice, @RecommendedRetailPrice,
+            @TypicalWeightPerUnit, @MarketingComments, @InternalComments, @Photo, @CustomFields);
+        END
+    END TRY
+    BEGIN CATCH
+        
+    END CATCH
+END;
+GO
+
+
+-- Actualizar el registro de un producto en stock items StockItems
+CREATE PROCEDURE sp_ActualizarStockItem_Suscriptor
+    @StockItemID INT,
+    @StockItemName NVARCHAR(100),
+    @SupplierID INT,
+    @ColorID INT = NULL,
+    @UnitPackageID INT,
+    @OuterPackageID INT,
+    @Brand NVARCHAR(50) = NULL,
+    @Size NVARCHAR(20) = NULL,
+    @LeadTimeDays INT,
+    @QuantityPerOuter INT,
+    @IsChillerStock BIT,
+    @Barcode NVARCHAR(50) = NULL,
+    @TaxRate DECIMAL(18,3),
+    @UnitPrice DECIMAL(18,2),
+    @RecommendedRetailPrice DECIMAL(18,2) = NULL,
+    @TypicalWeightPerUnit DECIMAL(18,3),
+    @MarketingComments NVARCHAR(MAX) = NULL,
+    @InternalComments NVARCHAR(MAX) = NULL,
+    @Photo VARBINARY(MAX) = NULL,
+    @CustomFields NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        -- Verificar que el item exista y que el nombre no este duplicado en los registros.
+        IF EXISTS (SELECT 1 FROM Warehouse.StockItems WHERE StockItemID = @StockItemID)
+           AND NOT EXISTS (SELECT 1 FROM Warehouse.StockItems WHERE StockItemName = @StockItemName AND StockItemID <> @StockItemID)
+        BEGIN
+            UPDATE Warehouse.StockItems
+            SET StockItemName = @StockItemName,
+                SupplierID = @SupplierID,
+                ColorID = @ColorID,
+                UnitPackageID = @UnitPackageID,
+                OuterPackageID = @OuterPackageID,
+                Brand = @Brand,
+                Size = @Size,
+                LeadTimeDays = @LeadTimeDays,
+                QuantityPerOuter = @QuantityPerOuter,
+                IsChillerStock = @IsChillerStock,
+                Barcode = @Barcode,
+                TaxRate = @TaxRate,
+                UnitPrice = @UnitPrice,
+                RecommendedRetailPrice = @RecommendedRetailPrice,
+                TypicalWeightPerUnit = @TypicalWeightPerUnit,
+                MarketingComments = @MarketingComments,
+                InternalComments = @InternalComments,
+                Photo = @Photo,
+                CustomFields = @CustomFields
+            WHERE StockItemID = @StockItemID;
+        END
+    END TRY
+    BEGIN CATCH
+       
+    END CATCH
+END;
+GO
+
+
+-- Eliminar un registro de StockItems
+CREATE PROCEDURE sp_EliminarStockItem_Suscriptor
+    @StockItemID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        -- Verificar que el item no tenga transacciones asociadas, esto deja de funcionar si se insertan nuevas transacciones con esos productos.
+        IF NOT EXISTS (SELECT 1 FROM Warehouse.StockItemTransactions WHERE StockItemID = @StockItemID)
+        BEGIN
+            DELETE FROM Warehouse.StockItems WHERE StockItemID = @StockItemID;
+        END
+    END TRY
+    BEGIN CATCH
+      
+    END CATCH
+END;
+GO
+
+
+
+
+
+
+
+
+
+
+
+
 -- ========================== Para la tabla de StockItemTransactions : <- Este era el importante que hay que revisar.
 
 -- Insertar un nuevo registro en StockItemTransactions

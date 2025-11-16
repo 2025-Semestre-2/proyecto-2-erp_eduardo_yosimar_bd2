@@ -1,12 +1,13 @@
 -- Aqui van a ir la creacion base de las tablas 
 
-create database WWI_Sucursal_Limon;
+create database WWISucursalLimon;
 go 
 
 -- create database WWI_Sucursal_San_Jose;
 -- go 
 
-use WWI_Sucursal_Limon;
+use WWISucursalLimon;
+-- use WWI_Limon_V1;
 go
 
 -- use WWI_Sucursal_San_Jose;
@@ -517,7 +518,8 @@ CREATE TABLE [Warehouse].[StockItems] (
   [MarketingComments] NVARCHAR(MAX) NULL,
   [InternalComments] NVARCHAR(MAX) NULL,
   [Photo] VARBINARY(MAX) NULL,
-  [CustomFields] NVARCHAR(MAX) NULL
+  [CustomFields] NVARCHAR(MAX) NULL--,
+  --[rowguid] [uniqueidentifier] ROWGUIDCOL  NOT NULL
   -- ,  CONSTRAINT [UQ_Warehouse_StockItems_StockItemName] UNIQUE ([StockItemName])
 );
 

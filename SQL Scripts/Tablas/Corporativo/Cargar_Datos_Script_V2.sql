@@ -568,7 +568,7 @@ SELECT
     ColdRoomSensorNumber,
     RecordedWhen,
     Temperature
-FROM WWI_Limon_V1.Warehouse.ColdRoomTemperatures;
+FROM WideWorldImporters.Warehouse.ColdRoomTemperatures_Stage;
 
 SET IDENTITY_INSERT Warehouse.ColdRoomTemperatures OFF;
 
@@ -582,7 +582,7 @@ SELECT
     ColorID,
     ColorName,
     LastEditedBy
-FROM WWI_Limon_V1.Warehouse.Colors;
+FROM WideWorldImporters.Warehouse.Colors_Stage;
 
 SET IDENTITY_INSERT Warehouse.Colors OFF;
 
@@ -597,7 +597,7 @@ SELECT
     PackageTypeID,
     PackageTypeName,
     LastEditedBy
-FROM WWI_Limon_V1.Warehouse.PackageTypes;
+FROM WideWorldImporters.Warehouse.PackageTypes_Stage;
 
 SET IDENTITY_INSERT Warehouse.PackageTypes OFF;
 
@@ -612,25 +612,25 @@ SELECT
     StockGroupID,
     StockGroupName,
     LastEditedBy
-FROM WWI_Limon_V1.Warehouse.StockGroups;
+FROM WideWorldImporters.Warehouse.StockGroups_Stage;
 
 SET IDENTITY_INSERT Warehouse.StockGroups OFF;
 
 
 -- ====== StockItemHoldings ======:
-INSERT INTO Warehouse.StockItemHoldings
-    (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity,
-    LastCostPrice, ReorderLevel, TargetStockLevel, LastEditedBy)
-SELECT
-    StockItemID,
-    QuantityOnHand,
-    BinLocation,
-    LastStocktakeQuantity,
-    LastCostPrice,
-    ReorderLevel,
-    TargetStockLevel,
-    LastEditedBy
-FROM WWI_Limon_V1.Warehouse.StockItemHoldings;
+-- INSERT INTO Warehouse.StockItemHoldings
+--     (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity,
+--     LastCostPrice, ReorderLevel, TargetStockLevel, LastEditedBy)
+-- SELECT
+--     StockItemID,
+--     QuantityOnHand,
+--     BinLocation,
+--     LastStocktakeQuantity,
+--     LastCostPrice,
+--     ReorderLevel,
+--     TargetStockLevel,
+--     LastEditedBy
+-- FROM WideWorldImporters.Warehouse.StockItemHoldings_Stage;
 
 
 
@@ -663,7 +663,7 @@ SELECT
     InternalComments,
     Photo,
     CustomFields
-FROM WWI_Limon_V1.Warehouse.StockItems;
+FROM WideWorldImporters.Warehouse.StockItems_Stage;
 
 SET IDENTITY_INSERT Warehouse.StockItems OFF;
 
@@ -679,7 +679,7 @@ SELECT
     StockItemID,
     StockGroupID,
     LastEditedBy
-FROM WWI_Limon_V1.Warehouse.StockItemStockGroups;
+FROM WideWorldImporters.Warehouse.StockItemStockGroups_Stage;
 
 SET IDENTITY_INSERT Warehouse.StockItemStockGroups OFF;
 
@@ -701,7 +701,7 @@ SELECT
     TransactionOccurredWhen,
     Quantity,
     LastEditedBy
-FROM WWI_Limon_V1.Warehouse.StockItemTransactions;
+FROM WideWorldImporters.Warehouse.StockItemTransactions_Stage;
 
 SET IDENTITY_INSERT Warehouse.StockItemTransactions OFF
 
@@ -721,7 +721,7 @@ SELECT
     FullSensorData,
     IsCompressed,
     CompressedSensorData
-FROM WWI_Limon_V1.Warehouse.VehicleTemperatures;
+FROM WideWorldImporters.Warehouse.VehicleTemperatures_Stage;
 
 SET IDENTITY_INSERT Warehouse.VehicleTemperatures OFF;
 

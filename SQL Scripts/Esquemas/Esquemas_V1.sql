@@ -1,7 +1,10 @@
 
 -- USE WWI_Corporativo_V1;
 -- USE WWI_sanjose;
--- USE WWI_Limon;
+
+-- create database WWISucursalLimon;
+-- USE WWISucursalLimon;
+
 
 /****** Object:  Schema [Application]    Script Date: 9/11/2025 21:29:47 ******/
 CREATE SCHEMA [Application]

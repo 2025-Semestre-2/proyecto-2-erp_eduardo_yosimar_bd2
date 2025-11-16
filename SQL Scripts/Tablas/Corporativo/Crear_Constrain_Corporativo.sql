@@ -341,6 +341,9 @@ FOREIGN KEY ([StockGroupID]) REFERENCES [Warehouse].[StockGroups] ([StockGroupID
 ALTER TABLE [Sales].[SpecialDeals] WITH CHECK ADD CONSTRAINT [FK_SpecialDeals_StockItems]
 FOREIGN KEY ([StockItemID]) REFERENCES [Warehouse].[StockItems] ([StockItemID]);
 
+
+
+
 -- >> Colors
 ALTER TABLE [Warehouse].[Colors] WITH CHECK ADD CONSTRAINT [FK_Colors_LastEditedBy]
 FOREIGN KEY ([LastEditedBy]) REFERENCES [Application].[People] ([PersonID]);
