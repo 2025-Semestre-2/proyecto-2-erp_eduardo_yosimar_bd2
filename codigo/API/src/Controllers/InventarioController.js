@@ -1,6 +1,7 @@
 // Archivo para todo lo relacionado con los proveedores.
 
-const db = require('../Config/db');
+// const db = require('../Config/db');
+const { establecerConexion } = require('../Config/db');
 const sql = require('mssql');
 
 
@@ -15,8 +16,9 @@ const optenerInventario = async (req, res) => {
         const procesar = (dato) => (dato === 'null' || dato === '_' || dato === '' ? null : dato);
 
         // console.log("Nombre producto:", procesar(nombreProducto));
+        const pool = await establecerConexion(targetDB);
         // console.log("Grupo:", procesar(grupo));
-        const conec = await db;
+        const conec = await pool;//db;
         let resultado = await conec.request()
             .input('NombreProducto', sql.VarChar, procesar(nombreProducto))
             .input('Grupo', sql.VarChar, procesar(grupo))
