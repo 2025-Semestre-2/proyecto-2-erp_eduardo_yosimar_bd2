@@ -1,15 +1,18 @@
 -- Aqui van a ir la creacion base de las tablas 
 
-create database WWISucursalLimon;
+create database WWI_Sucursal_Limon_V1;
 go 
 
+create database WWI_Sucursal_San_Jose_V1;
+go
 -- create database WWI_Sucursal_San_Jose;
 -- go 
 
-use WWISucursalLimon;
--- use WWI_Limon_V1;
+use WWI_Sucursal_Limon_V1;
 go
 
+use WWI_Sucursal_San_Jose_V1;
+GO
 -- use WWI_Sucursal_San_Jose;
 -- go
 
@@ -276,8 +279,8 @@ CREATE TABLE [Sales].[CustomerCategories] (
 --   [LastEditedBy] INT NOT NULL
 -- );
 
-CREATE TABLE ClientesSanJose (
-    CustomerID INT PRIMARY KEY,
+CREATE TABLE Sales.Clientes (
+    CustomerID INT PRIMARY KEY IDENTITY(1,1),
     CustomerName NVARCHAR(100) NOT NULL,
     BillToCustomerID INT NOT NULL,
     CustomerCategoryID INT NOT NULL,
@@ -420,7 +423,7 @@ CREATE TABLE [Sales].[Orders] (
   [InternalComments] NVARCHAR(MAX) NULL,
   [PickingCompletedWhen] DATETIME2(7) NULL,
   [LastEditedBy] INT NOT NULL,
-  [Suculsal] NVARCHAR(50) NULL
+  [Sucursal] NVARCHAR(50) NULL
   -- ,[LastEditedWhen] DATETIME2(7) NOT NULL DEFAULT (sysdatetime())
 );
 

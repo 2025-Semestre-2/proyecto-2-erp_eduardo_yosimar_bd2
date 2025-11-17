@@ -1,7 +1,7 @@
 
 -- USE WWI_Corporativo_V1;
--- USE WWI_sanjose;
-
+USE WWI_Sucursal_San_Jose_V1;
+USE WWI_Sucursal_Limon_V1;
 -- create database WWISucursalLimon;
 -- USE WWISucursalLimon;
 

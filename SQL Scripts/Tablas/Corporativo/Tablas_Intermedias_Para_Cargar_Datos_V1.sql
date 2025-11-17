@@ -66,9 +66,7 @@ SELECT *
 INTO Sales.Customers_Stage
 FROM WideWorldImporters.Sales.Customers;
 
-SELECT * 
-INTO Sales.ClientesDatosSensibles_Stage
-FROM WideWorldImporters.Sales.ClientesDatosSensibles;
+
 
 SELECT * 
 INTO Sales.CustomerTransactions_Stage

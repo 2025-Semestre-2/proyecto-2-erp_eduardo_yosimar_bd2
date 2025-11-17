@@ -1,8 +1,10 @@
 -- Aqui se van a hacer la carga de datos desde la WideWorldImporters orginal, hacia las bases de datos nuevas que se crearon, de corporatvo y las sucrusales.
 
-USE WWI_Corporativo_V1;
-GO
+use WWI_Sucursal_Limon_V1;
+go
 
+use WWI_Sucursal_San_Jose_V1;
+GO
 
 -- ======  ======:
 -- SET IDENTITY_INSERT Warehouse. ON;
@@ -390,29 +392,36 @@ SET IDENTITY_INSERT Sales.CustomerCategories OFF;
 -- FROM WideWorldImporters.Sales.Customers_Stage;
 
 -- SET IDENTITY_INSERT Sales.Customers OFF;
+-- ====== Clientes ======:
+SET IDENTITY_INSERT Sales.Clientes ON;
 
-SET IDENTITY_INSERT Sales.ClientesDatosSensibles ON;
-
-INSERT INTO Sales.ClientesDatosSensibles
-    (CustomerID, CustomerName, PhoneNumber, FaxNumber, WebsiteURL,
-    DeliveryAddressLine1, DeliveryAddressLine2, DeliveryPostalCode,
-    PostalAddressLine1, PostalAddressLine2, PostalPostalCode, DeliveryLocation)
+INSERT INTO Sales.Clientes
+    (CustomerID, CustomerName, BillToCustomerID, CustomerCategoryID, BuyingGroupID,
+    PrimaryContactPersonID, AlternateContactPersonID, DeliveryMethodID, DeliveryCityID,
+    PostalCityID, CreditLimit, AccountOpenedDate, StandardDiscountPercentage,
+    IsStatementSent, IsOnCreditHold, PaymentDays, LastEditedBy)
 SELECT
     CustomerID,
     CustomerName,
-    PhoneNumber,
-    FaxNumber,
-    WebsiteURL,
-    DeliveryAddressLine1,
-    DeliveryAddressLine2,
-    DeliveryPostalCode,
-    PostalAddressLine1,
-    PostalAddressLine2,
-    PostalPostalCode,
-    DeliveryLocation
+    BillToCustomerID,
+    CustomerCategoryID,
+    BuyingGroupID,
+    PrimaryContactPersonID,
+    AlternateContactPersonID,
+    DeliveryMethodID,
+    DeliveryCityID,
+    PostalCityID,
+    CreditLimit,
+    AccountOpenedDate,
+    StandardDiscountPercentage,
+    IsStatementSent,
+    IsOnCreditHold,
+    PaymentDays,
+    LastEditedBy
 FROM WideWorldImporters.Sales.Customers_Stage;
 
-SET IDENTITY_INSERT Sales.ClientesDatosSensibles OFF;
+SET IDENTITY_INSERT Sales.Clientes OFF;
+
 
 
 -- ====== CustomerTransactions ======:
@@ -642,19 +651,19 @@ SET IDENTITY_INSERT Warehouse.StockGroups OFF;
 
 
 -- ====== StockItemHoldings ======:
--- INSERT INTO Warehouse.StockItemHoldings
---     (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity,
---     LastCostPrice, ReorderLevel, TargetStockLevel, LastEditedBy)
--- SELECT
---     StockItemID,
---     QuantityOnHand,
---     BinLocation,
---     LastStocktakeQuantity,
---     LastCostPrice,
---     ReorderLevel,
---     TargetStockLevel,
---     LastEditedBy
--- FROM WideWorldImporters.Warehouse.StockItemHoldings_Stage;
+INSERT INTO Warehouse.StockItemHoldings
+     (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity,
+     LastCostPrice, ReorderLevel, TargetStockLevel, LastEditedBy)
+ SELECT
+     StockItemID,
+     QuantityOnHand,
+     BinLocation,
+     LastStocktakeQuantity,
+     LastCostPrice,
+     ReorderLevel,
+     TargetStockLevel,
+     LastEditedBy
+FROM WideWorldImporters.Warehouse.StockItemHoldings_Stage;
 
 
 
