@@ -70,9 +70,7 @@ function Estadisticas() {
     // Obtener los datos y guardarlos para que se actulice el contenido de la tabla.
     const datos = await promedioDeVentasPorCliente(filtrosT);
     setResultados(Array.isArray(datos) || typeof datos === 'object' ? datos : []);
-
-  };
-
+};
 
   const aplicarFiltrosF = async () => {
     if (estadisticaSeleccionada === 'productos') {

@@ -59,15 +59,16 @@ async function pormedioDeCompraPorProveedor({ nombre, categoria, sucursal }) {
  * @param {int} proveedorID 
  * @returns Los datos del proveedor solicitado en caso de existir.
  */
-async function promedioDeVentasPorCliente({ nombre, categoria }) {
+async function promedioDeVentasPorCliente({ nombre, categoria, sucursal }) {
 
     // Procesar los datos de los filtros y pasarlos a 'null' o alguno de los que vamos a permitir.
     const nombreProcesado = nombre || 'null';
     const categoriaProcesado = categoria || 'null';
+    const sucursalProcesado = sucursal || 'SanJose';
 
 
     // Armar la URL para la consulta
-    const url = `${base_url}estadisticas/promedioVentasPorCliente/${nombreProcesado}/${categoriaProcesado}`;
+    const url = `${base_url}estadisticas/promedioVentasPorCliente/${nombreProcesado}/${categoriaProcesado}/${sucursalProcesado}`;
 
     // Intentar realizar la consulta
     try {
@@ -107,15 +108,16 @@ async function promedioDeVentasPorCliente({ nombre, categoria }) {
  * @param {int} proveedorID 
  * @returns Los datos del proveedor solicitado en caso de existir.
  */
-async function topProductoPorAnio({ fechaInicio, fechaFin }) {
+async function topProductoPorAnio({ fechaInicio, fechaFin, sucursal }) {
     // console.log("Fechas recibidas");
     // Procesar los datos de los filtros y pasarlos a 'null' o alguno de los que vamos a permitir.
     const fechaInicioProcesado = fechaInicio || 'null';
     const fechaFinProcesado = fechaFin || 'null';
+    const sucursalProcesado = sucursal || 'SanJose';
 
 
     // Armar la URL para la consulta
-    const url = `${base_url}estadisticas/topGananciaProductosPorAnio/${fechaInicioProcesado}/${fechaFinProcesado}`;
+    const url = `${base_url}estadisticas/topGananciaProductosPorAnio/${fechaInicioProcesado}/${fechaFinProcesado}/${sucursalProcesado}`;
 
     // Intentar realizar la consulta
     try {
@@ -156,15 +158,16 @@ async function topProductoPorAnio({ fechaInicio, fechaFin }) {
  * @param {int} proveedorID 
  * @returns Los datos del proveedor solicitado en caso de existir.
  */
-async function topClientesPorAnio({ fechaInicio, fechaFin }) {
+async function topClientesPorAnio({ fechaInicio, fechaFin, sucursal }) {
 
     // Procesar los datos de los filtros y pasarlos a 'null' o alguno de los que vamos a permitir.
     const fechaInicioProcesado = fechaInicio || 'null';
     const fechaFinProcesado = fechaFin || 'null';
+    const sucursalProcesado = sucursal || 'SanJose';
 
 
     // Armar la URL para la consulta
-    const url = `${base_url}estadisticas/topCantPedidoPorClientePorAnio/${fechaInicioProcesado}/${fechaFinProcesado}`;
+    const url = `${base_url}estadisticas/topCantPedidoPorClientePorAnio/${fechaInicioProcesado}/${fechaFinProcesado}/${sucursalProcesado}`;
 
     // Intentar realizar la consulta
     try {
@@ -204,15 +207,16 @@ async function topClientesPorAnio({ fechaInicio, fechaFin }) {
  * @param {int} proveedorID 
  * @returns Los datos del proveedor solicitado en caso de existir.
  */
-async function topProveedoresPorAnio({ fechaInicio, fechaFin }) {
+async function topProveedoresPorAnio({ fechaInicio, fechaFin, sucursal }) {
 
     // Procesar los datos de los filtros y pasarlos a 'null' o alguno de los que vamos a permitir.
     const fechaInicioProcesado = fechaInicio || 'null';
     const fechaFinProcesado = fechaFin || 'null';
+    const sucursalProcesado = sucursal || 'SanJose';
 
 
     // Armar la URL para la consulta
-    const url = `${base_url}estadisticas/topCantPedidoPorProveedorPorAnio/${fechaInicioProcesado}/${fechaFinProcesado}`;
+    const url = `${base_url}estadisticas/topCantPedidoPorProveedorPorAnio/${fechaInicioProcesado}/${fechaFinProcesado}/${sucursalProcesado}`;
 
     // Intentar realizar la consulta
     try {

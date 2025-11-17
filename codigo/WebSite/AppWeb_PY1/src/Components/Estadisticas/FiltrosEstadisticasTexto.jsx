@@ -80,6 +80,7 @@ function FiltroTextoSelect({ filtros, opciones = [], onChange , onAplicar, clave
           >
             <option value="SanJose">San José</option>
             <option value="Limon">Limón</option>
+            <option value="null">Ninguna</option>
           </select>
         </div>
       </div>
