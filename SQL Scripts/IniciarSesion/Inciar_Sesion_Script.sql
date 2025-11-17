@@ -11,10 +11,8 @@ SELECT
     rol,
     email,
     hiredate,
-    sucursal,
-    created_at,
-    updated_at
-FROM Usuarios;
+    sucursal
+FROM dbo.Usuarios;
 GO
 
 

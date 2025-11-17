@@ -8,7 +8,7 @@ INSERT INTO Usuarios (username, password_hash, fullname, rol, email, sucursal)
 VALUES (
   'eduardo',
   CONVERT(VARCHAR(255), HASHBYTES('SHA2_256', 'eduardo123')),
-  'Eduardo García',
+  'Eduardo Rojas',
   'Administrador',
   'eduardo@example.com',
   'Corporativo'
@@ -38,7 +38,7 @@ VALUES (
 );
 
 -- >> Registrar los usuarios de Limon
-USE WWI_Limon_V1;
+USE WWI_Sucursal_Limon_V1;
 GO
 
 -- Eduardo
@@ -46,7 +46,7 @@ INSERT INTO Usuarios (username, password_hash, fullname, rol, email, sucursal)
 VALUES (
   'eduardo',
   CONVERT(VARCHAR(255), HASHBYTES('SHA2_256', 'eduardo123')),
-  'Eduardo García',
+  'Eduardo Rojas',
   'Administrador',
   'eduardo@example.com',
   'Limon'
@@ -77,7 +77,7 @@ VALUES (
 
 
 -- >> Registrar los usuarios de San jose.
-USE WWI_San_Jose_V1;
+USE WWI_Sucursal_San_Jose_V1;
 GO
 
 -- Eduardo
@@ -85,7 +85,7 @@ INSERT INTO Usuarios (username, password_hash, fullname, rol, email, sucursal)
 VALUES (
   'eduardo',
   CONVERT(VARCHAR(255), HASHBYTES('SHA2_256', 'eduardo123')),
-  'Eduardo García',
+  'Eduardo Rojas',
   'Administrador',
   'eduardo@example.com',
   'SanJose'

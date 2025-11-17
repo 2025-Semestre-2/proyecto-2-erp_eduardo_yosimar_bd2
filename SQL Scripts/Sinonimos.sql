@@ -4,11 +4,26 @@
 USE WideWorldImporters;
 GO
 
+USE WWI_Corporativo_V1;
+GO
+
+USE WWI_Sucursal_Limon_V1;
+GO
+
+USE WWI_Sucursal_San_Jose_V1;
+GO 
+
 -- Personas
 CREATE SYNONYM Personas FOR Application.People;
 
 -- Clientes
-CREATE SYNONYM Clientes FOR Sales.Customers;
+--CREATE SYNONYM Clientes FOR Sales.Customers;
+
+CREATE SYNONYM ClientesDatosSensibles FOR Sales.ClientesDatosSensibles; -- <- Solo se corporativo.
+
+CREATE SYNONYM Clientes FOR Sales.Clientes; -- >-Solo para las sucursales.
+
+
 CREATE SYNONYM CategoriasClientes FOR Sales.CustomerCategories;
 
 -- Proveedores
