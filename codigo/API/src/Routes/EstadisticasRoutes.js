@@ -1,6 +1,7 @@
 const express = require('express');
 const { optenerPromedioDeCompraProveedores, optenerPromedioDeVentasPorCliente, optenerTopGananciaProductosPorAnio, optenerTopCantPedidoPorClientePorAnio, optenerTopCantPedidoPorProveedorPorAnio } = require('../Controllers/EstadisticasController');
 const router = express.Router();
+const {validarAutenticacion} = require('../Config/Utils/Autenticacion_utils');
 
 // Este es la ruta para obtener clientes.
 

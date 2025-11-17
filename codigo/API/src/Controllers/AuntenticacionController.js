@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const sql = require('mssql');
 const { establecerConexion } = require('../Config/db');
-
 // EndPoint para realizar el inicio de sesion 
 const validarCredenciales = async (req, res) => {
 

@@ -14,8 +14,8 @@ const optenerPromedioDeCompraProveedores = async (req, res) => {
         // Esto es para poder pasar convertir a null en caso de caso de que la ruta venga en 'null'.
         const procesar = (dato) => (dato === 'null' || dato === '_' || dato === '' ? null : dato);
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('NombreProveedor', sql.VarChar, procesar(nombreProveedor))
             .input('Categoria', sql.VarChar, procesar(categoria))
             .input('Sucursal', sql.VarChar, procesar(sucursal))
@@ -44,8 +44,8 @@ const optenerPromedioDeVentasPorCliente = async (req, res) => {
         const procesar = (dato) => (dato === 'null' || dato === '_' || dato === '' ? null : dato);
 
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('NombreCliente', sql.VarChar, procesar(nombreCliente))
             .input('CategoriaCliente', sql.VarChar, procesar(categoria))
             .input('Sucursal', sql.VarChar, procesar(sucursal))
@@ -70,8 +70,8 @@ const optenerTopGananciaProductosPorAnio = async (req, res) => {
 
         let { anioInicio, anioFin, sucursal } = req.params;
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
             .input('Sucursal', sql.VarChar, sucursal)
@@ -93,8 +93,8 @@ const optenerTopCantPedidoPorClientePorAnio = async (req, res) => {
 
         let { anioInicio, anioFin, sucursal } = req.params;
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
             .input('Sucursal', sql.VarChar, sucursal)
@@ -116,8 +116,8 @@ const optenerTopCantPedidoPorProveedorPorAnio= async (req, res) => {
 
         let { anioInicio, anioFin, sucursal } = req.params;
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
             .input('Sucursal', sql.VarChar, sucursal)
