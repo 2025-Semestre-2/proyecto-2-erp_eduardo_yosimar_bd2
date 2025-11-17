@@ -116,8 +116,8 @@ const optenerTopCantPedidoPorProveedorPorAnio= async (req, res) => {
 
         let { anioInicio, anioFin, sucursal } = req.params;
 
-        const conec = await db;
-        let resultado = await conec.request()
+        const pool = await establecerConexion(procesar(servidor));
+        let resultado = await pool.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
             .input('Sucursal', sql.VarChar, sucursal)
