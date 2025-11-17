@@ -9,7 +9,7 @@ const optenerPromedioDeCompraProveedores = async (req, res) => {
 
     try {
 
-        let { nombreProveedor, categoria} = req.params;
+        let { nombreProveedor, categoria, sucursal} = req.params;
 
         // Esto es para poder pasar convertir a null en caso de caso de que la ruta venga en 'null'.
         const procesar = (dato) => (dato === 'null' || dato === '_' || dato === '' ? null : dato);
@@ -18,7 +18,8 @@ const optenerPromedioDeCompraProveedores = async (req, res) => {
         let resultado = await conec.request()
             .input('NombreProveedor', sql.VarChar, procesar(nombreProveedor))
             .input('Categoria', sql.VarChar, procesar(categoria))
-            .execute('sp_EstadisticasDeComprasPorProveedor');
+            .input('Sucursal', sql.VarChar, procesar(sucursal))
+            .execute('sp_EstadisticasDeComprasPorProveedor_Consolidado');
 
         // Agrupar los elementos por clave.
         const datosProcesador = agruparPorClave(resultado.recordset, "NombreProveedor");
@@ -37,7 +38,7 @@ const optenerPromedioDeVentasPorCliente = async (req, res) => {
 
     try {
 
-        let { nombreCliente, categoria} = req.params;
+        let { nombreCliente, categoria, sucursal } = req.params;
 
         // Esto es para poder pasar convertir a null en caso de caso de que la ruta venga en 'null'.
         const procesar = (dato) => (dato === 'null' || dato === '_' || dato === '' ? null : dato);
@@ -47,7 +48,8 @@ const optenerPromedioDeVentasPorCliente = async (req, res) => {
         let resultado = await conec.request()
             .input('NombreCliente', sql.VarChar, procesar(nombreCliente))
             .input('CategoriaCliente', sql.VarChar, procesar(categoria))
-            .execute('sp_EstadisticasVentasPorCliente');
+            .input('Sucursal', sql.VarChar, procesar(sucursal))
+            .execute('sp_EstadisticasVentasPorCliente_Consolidado');
 
         // Agrupar los elementos por clave.
         const datosProcesador = agruparPorClave(resultado.recordset, 'NombreCliente');
@@ -66,13 +68,14 @@ const optenerTopGananciaProductosPorAnio = async (req, res) => {
 
     try {
 
-        let { anioInicio, anioFin} = req.params;
+        let { anioInicio, anioFin, sucursal } = req.params;
 
         const conec = await db;
         let resultado = await conec.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
-            .execute('sp_TopProductosPorGananciaPorAnio');
+            .input('Sucursal', sql.VarChar, sucursal)
+            .execute('sp_TopProductosPorGananciaPorAnio_Consolidado');
 
         // Agrupar los elementos por clave.
         const datosProcesador = agruparPorClave(resultado.recordset, 'Anio')
@@ -88,13 +91,14 @@ const optenerTopCantPedidoPorClientePorAnio = async (req, res) => {
 
     try {
 
-        let { anioInicio, anioFin} = req.params;
+        let { anioInicio, anioFin, sucursal } = req.params;
 
         const conec = await db;
         let resultado = await conec.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
-            .execute('sp_TopClientesPorPedidosPorAnio');
+            .input('Sucursal', sql.VarChar, sucursal)
+            .execute('sp_TopClientesPorPedidosPorAnio_Consolidado');
 
         // Agrupar los elementos por clave.
         const datosProcesador = agruparPorClave(resultado.recordset, 'Anio')
@@ -110,13 +114,14 @@ const optenerTopCantPedidoPorProveedorPorAnio= async (req, res) => {
 
     try {
 
-        let { anioInicio, anioFin} = req.params;
+        let { anioInicio, anioFin, sucursal } = req.params;
 
         const conec = await db;
         let resultado = await conec.request()
             .input('AnioInicio', sql.Int, anioInicio)
             .input('AnioFin', sql.Int, anioFin)
-            .execute('sp_TopProveedoresPorOrdenesPorAnio');
+            .input('Sucursal', sql.VarChar, sucursal)
+            .execute('sp_TopProveedoresPorOrdenesPorAnio_Consolidado');
 
         // Agrupar los elementos por clave.
         const datosProcesador = agruparPorClave(resultado.recordset, 'Anio');

@@ -1,4 +1,3 @@
-
 function FiltroFechas({ filtros, onChange, onAplicar }) {
   // const [filtros, setFiltros] = useState({
   //   fechaInicio: '',
@@ -32,7 +31,18 @@ function FiltroFechas({ filtros, onChange, onAplicar }) {
           </select>
             
         </div>
-
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Sucursal</label>
+          <select
+            name="sucursal"
+            value={filtros.sucursal}
+            onChange={onChange}
+            className="w-full border border-sky-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-50"
+          >
+            <option value="SanJose">San José</option>
+            <option value="Limon">Limón</option>
+          </select>
+        </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Fecha fin</label>
           <select

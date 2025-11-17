@@ -9,15 +9,16 @@ const base_url = 'http://localhost:5000/api/';
  * @param {string} nombre 
  * @returns 
  */
-async function pormedioDeCompraPorProveedor({ nombre, categoria }) {
+async function pormedioDeCompraPorProveedor({ nombre, categoria, sucursal }) {
 
     // Procesar los datos de los filtros y pasarlos a 'null' o alguno de los que vamos a permitir.
     const nombreProcesado = nombre || 'null';
     const categoriaProcesado = categoria || 'null';
+    const sucursalProcesado = sucursal || 'SanJose';
 
 
     // Armar la URL para la consulta
-    const url = `${base_url}estadisticas/promedioCompraProveedores/${nombreProcesado}/${categoriaProcesado}`;
+    const url = `${base_url}estadisticas/promedioCompraProveedores/${nombreProcesado}/${categoriaProcesado}/${sucursalProcesado}`;
 
     // Intentar realizar la consulta
     try {

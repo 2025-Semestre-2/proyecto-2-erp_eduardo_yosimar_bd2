@@ -1,5 +1,8 @@
 
 function TablaEstadisticaPromedioProveedores({ resultados }) {
+    if (!resultados || (Array.isArray(resultados) && resultados.length === 0)) {
+        return <p className="text-gray-500 italic">No hay datos para mostrar.</p>;
+    }
     const resumenGeneral = Object.values(resultados).flat().find(
         (buscar) => buscar.NombreProveedor == null && buscar.Categoria == null
     );

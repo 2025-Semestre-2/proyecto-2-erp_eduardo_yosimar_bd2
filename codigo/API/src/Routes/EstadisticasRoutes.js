@@ -5,14 +5,13 @@ const router = express.Router();
 // Este es la ruta para obtener clientes.
 
 // Obtener todo los clientes mediante filtros.
-router.get('/promedioCompraProveedores/:nombreProveedor/:categoria', optenerPromedioDeCompraProveedores);
+router.get('/promedioCompraProveedores/:nombreProveedor/:categoria/:sucursal', optenerPromedioDeCompraProveedores);
 
-router.get('/promedioVentasPorCliente/:nombreCliente/:categoria', optenerPromedioDeVentasPorCliente); // Obtener un cliente mediante su ID.
+router.get('/promedioVentasPorCliente/:nombreCliente/:categoria/:sucursal', optenerPromedioDeVentasPorCliente); // Obtener un cliente mediante su ID.
 
-router.get('/topGananciaProductosPorAnio/:anioInicio/:anioFin', optenerTopGananciaProductosPorAnio);
+router.get('/topGananciaProductosPorAnio/:anioInicio/:anioFin/:sucursal', optenerTopGananciaProductosPorAnio);
+router.get('/topCantPedidoPorClientePorAnio/:anioInicio/:anioFin/:sucursal', optenerTopCantPedidoPorClientePorAnio);
 
-router.get('/topCantPedidoPorClientePorAnio/:anioInicio/:anioFin', optenerTopCantPedidoPorClientePorAnio);
-
-router.get('/topCantPedidoPorProveedorPorAnio/:anioInicio/:anioFin', optenerTopCantPedidoPorProveedorPorAnio);
+router.get('/topCantPedidoPorProveedorPorAnio/:anioInicio/:anioFin/:sucursal', optenerTopCantPedidoPorProveedorPorAnio);
 
 module.exports = router;

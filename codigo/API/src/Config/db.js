@@ -25,14 +25,14 @@ const configs = {
     server: process.env.DB_SERVER_SANJOSE,
     database: process.env.DB_DATABASE_SANJOSE,
     port: parseInt(process.env.DB_PORT_SANJOSE),
-        options: {
-        encrypt: false,
-        trustServerCertificate: true
+    options: {
+      encrypt: false,
+      trustServerCertificate: true
     },
     pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 6000
+      max: 10,
+      min: 0,
+      idleTimeoutMillis: 6000
     }
   },
   limon: {
@@ -41,14 +41,14 @@ const configs = {
     server: process.env.DB_SERVER_LIMON,
     database: process.env.DB_DATABASE_LIMON,
     port: parseInt(process.env.DB_PORT_LIMON),
-        options: {
-        encrypt: false,
-        trustServerCertificate: true
+    options: {
+      encrypt: false,
+      trustServerCertificate: true
     },
     pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 6000
+      max: 10,
+      min: 0,
+      idleTimeoutMillis: 6000
     }
   },
   corporativo: {
@@ -57,20 +57,34 @@ const configs = {
     server: process.env.DB_SERVER_CORP,
     database: process.env.DB_DATABASE_CORP,
     port: parseInt(process.env.DB_PORT_CORP),
-        options: {
-        encrypt: false,
-        trustServerCertificate: true
+    options: {
+      encrypt: false,
+      trustServerCertificate: true
     },
     pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 6000
+      max: 10,
+      min: 0,
+      idleTimeoutMillis: 6000
     }
   }
 };
 
+// Un cache de pools
+const pools = {};
 
-
+// Funcion para normalizar la clave de la base de datos
+function normalizeDbKey(dbKey) {
+  if (!dbKey) return null;
+  const key = String(dbKey).toLowerCase();
+  const aliases = {
+    'san jose': 'sanjose',
+    sanjose: 'sanjose',
+    limón: 'limon',
+    limon: 'limon',
+    corporativo: 'corporativo',
+  };
+  return aliases[key] || key;
+}
 
 // Esperar a que se establezca la conexion con el servidor:
 
@@ -87,25 +101,25 @@ const configs = {
 // const sql = require('mssql');
 
 async function establecerConexion(dbKey) {
-  const config = configs[dbKey];
+  const key = normalizeDbKey(dbKey);
+  if (!key) throw new Error('dbKey vacío o inválido');
+  const config = configs[key];
   if (!config) throw new Error(`No existe configuración para ${dbKey}`);
 
   // Si ya existe un pool conectado, lo reutilizamos
-  if (pools[dbKey]) {
-    return pools[dbKey];
+  if (pools[key]) {
+    return pools[key];
   }
 
   try {
     const pool = await new sql.ConnectionPool(config).connect();
-    console.log(`Conectado a ${dbKey}`);
-    pools[dbKey] = pool; // Guardamos el pool para reutilizarlo
+    console.log(`Conectado a ${key}`);
+    pools[key] = pool; // Guardamos el pool para reutilizarlo
     return pool;
-    
   } catch (err) {
-    console.error(`Error conectando a ${dbKey}`, err);
+    console.error(`Error conectando a ${key}`, err);
     throw err;
   }
 }
 
-
-module.exports = { establecerConexion };//conexion;//sql.connect(configDB);
+module.exports = { establecerConexion };

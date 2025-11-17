@@ -32,12 +32,14 @@ function Estadisticas() {
 
   const [filtrosT, setFiltrosT] = useState({
     nombre: '',
-    categoria: ''
+    categoria: '',
+    sucursal: 'SanJose'
   });
 
   const [filtrosF, setFiltrosF] = useState({
     fechaInicio: '2013',
-    fechaFin: '2016'
+    fechaFin: '2016',
+    sucursal: 'SanJose'
   });
 
   // La que almacena los datos a renderizar.
@@ -67,35 +69,21 @@ function Estadisticas() {
 
     // Obtener los datos y guardarlos para que se actulice el contenido de la tabla.
     const datos = await promedioDeVentasPorCliente(filtrosT);
-    setResultados(datos);
+    setResultados(Array.isArray(datos) || typeof datos === 'object' ? datos : []);
 
   };
 
 
   const aplicarFiltrosF = async () => {
-    console.log('Aplicando filtros de fechas:', filtrosF);
-
-    if (!filtrosF.fechaInicio || !filtrosF.fechaFin) {
-      alert('Error: los filtros de fecha minima y fecha maxima son requridos.');
-      return;
-    }
-
-    if (filtrosF.fechaInicio > filtrosF.fechaFin) {
-      alert('Error: los filtros de fecha minima debe de ser menos que la fecha maxima.');
-      return;
-    }
-
     if (estadisticaSeleccionada === 'productos') {
       const datos = await topProductoPorAnio(filtrosF);
-      setResultados(datos);
-
+      setResultados(Array.isArray(datos) || typeof datos === 'object' ? datos : []);
     } else if (estadisticaSeleccionada === 'facturas') {
       const datos = await topClientesPorAnio(filtrosF);
-      setResultados(datos);
-
+      setResultados(Array.isArray(datos) || typeof datos === 'object' ? datos : []);
     } else {
       const datos = await topProveedoresPorAnio(filtrosF);
-      setResultados(datos);
+      setResultados(Array.isArray(datos) || typeof datos === 'object' ? datos : []);
     }
     // Obtener los datos y guardarlos para que se actulice el contenido de la tabla.
     // const datos = await promedioDeVentasPorCliente(filtrosT);
