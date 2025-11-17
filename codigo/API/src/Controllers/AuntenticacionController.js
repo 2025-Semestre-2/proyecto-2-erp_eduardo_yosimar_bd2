@@ -19,7 +19,7 @@ const validarCredenciales = async (req, res) => {
         const result = await pool.request()
         .input('Email', sql.VarChar, email)
         .input('Password', sql.VarChar, password) // Esta es la contrasela cifrada.
-        .execute('sp_ValidarLogin');
+        .execute('sp_ValidarUsuario');
 
         
         if (result.recordset.length === 0) {

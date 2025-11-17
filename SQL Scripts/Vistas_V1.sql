@@ -170,17 +170,17 @@ SELECT
 
     SI.TaxRate AS Impuesto,
 
-    SI.UnitPrice AS PrecioUnitacio,
+    SI.UnitPrice AS PrecioUnitacio--,
 
-    SIH.QuantityOnHand AS CantidadDisponible, -- Esta es la de cantidad en inventario
+    --SIH.QuantityOnHand AS CantidadDisponible, -- Esta es la de cantidad en inventario
 
-    SIH.BinLocation AS Ubicacion,
+    --SIH.BinLocation AS Ubicacion,
 
-	SIH.ReorderLevel AS NivelOrdenamiento, -- No estoy seguro si pertenece a la ubicacion.
+	--SIH.ReorderLevel AS NivelOrdenamiento, -- No estoy seguro si pertenece a la ubicacion.
 
-	SIH.TargetStockLevel AS NivelStockObjetivo, -- No estoy seguro de si es el nivel de stock que se deberia tener.
+	--SIH.TargetStockLevel AS NivelStockObjetivo, -- No estoy seguro de si es el nivel de stock que se deberia tener.
 
-	SIH.LastStocktakeQuantity AS UltimaCantidadGuardada
+	--SIH.LastStocktakeQuantity AS UltimaCantidadGuardada
 
 
 FROM Productos SI
@@ -193,7 +193,7 @@ FROM Productos SI
 
 	LEFT JOIN Warehouse.PackageTypes PTO ON SI.OuterPackageID = PTO.PackageTypeID
 
-	LEFT JOIN InventarioActual SIH ON SI.StockItemID = SIH.StockItemID
+	--LEFT JOIN InventarioActual SIH ON SI.StockItemID = SIH.StockItemID
 
 	LEFT JOIN Warehouse.StockItemStockGroups SISG ON SI.StockItemID = SISG.StockItemID
 
@@ -218,7 +218,7 @@ FROM Warehouse.StockItemStockGroups SISG
 	JOIN Warehouse.StockGroups SG ON SISG.StockGroupID = SG.StockGroupID;
 GO
 
-
+--select * from CategoriasClientes
 
 -- Vistas para el modulo de facturas.
 
@@ -277,7 +277,11 @@ SELECT
  
 	I.DeliveryInstructions AS InstruccionesEntrega,
 
-	SUM(VFD.Total) AS TotalFacturado
+	SUM(VFD.Total) AS TotalFacturado,
+
+	ORD.Sucursal
+
+
 
 FROM Facturas I
 
@@ -291,12 +295,14 @@ FROM Facturas I
 	 
 	 JOIN view_FacturasDetalle VFD ON I.InvoiceID = vFD.FacturaID
 
+	 JOIN Sales.Orders ORD ON I.OrderID = ORD.OrderID
 
-	 group by I.InvoiceID, I.CustomerID, C.CustomerName, DM.DeliveryMethodName,I.CustomerPurchaseOrderNumber,PC.FullName, PV.FullName, I.InvoiceDate, I.DeliveryInstructions;
+
+	 group by I.InvoiceID, I.CustomerID, C.CustomerName, DM.DeliveryMethodName,I.CustomerPurchaseOrderNumber,PC.FullName, PV.FullName, I.InvoiceDate, I.DeliveryInstructions, ORD.Sucursal;
 
 
 GO
-
+--select * from view_FacturasEncabezado
 --select 
 	--min(FechaFactura),
 	--max(FechaFactura)
@@ -367,18 +373,17 @@ FROM view_FacturasEncabezado VFE
 GO
 
 
--- >>  Los 5 producto con mayor ganancia generada por aÒo.
+-- >>  Los 5 producto con mayor ganancia generada por aÔøΩo.
 -- Para cada factura, obtener sus detalles con el precio (de ese momento) y la cantidad vendidad. A ese precio del momento en el que se vendio se le tiene que quitar el precio actual para ver la diferenca.
 CREATE VIEW view_GananciaDeProductosPorAnio AS
 SELECT
 
 	VFD.ProductID,
 	VFD.NombreProducto,
+	VFE.Sucursal,
 
 	YEAR(VFE.FechaFactura) AS Anio,
 
-    -- SUM(VFD.Cantidad * (VFD.Ganancia)) AS GananciaTotal
-	--SUM(VFD.Cantidad * (VFD.PrecioUnitario - SI.UnitPrice)) AS GananciaTotal --
 	SUM(VFD.Ganancia) AS GananciaTotal
 
 FROM view_FacturasEncabezado VFE
@@ -386,7 +391,7 @@ FROM view_FacturasEncabezado VFE
 	JOIN view_FacturasDetalle VFD ON VFE.NumeroFactura = VFD.FacturaID
 	JOIN Productos SI ON VFD.ProductID = SI.StockItemID -- Para obtener el precio actual.
 
-	GROUP BY VFD.ProductID, VFD.NombreProducto, YEAR(VFE.FechaFactura);
+	GROUP BY VFD.ProductID, VFD.NombreProducto, VFE.Sucursal, YEAR(VFE.FechaFactura);
 
 GO
 
@@ -397,6 +402,7 @@ SELECT
 
 	VFE.ClienteID,
 	VFE.NombreCliente,
+	VFE.Sucursal,
 
 	YEAR(VFE.FechaFactura) AS Anio,
 
@@ -405,17 +411,18 @@ SELECT
 	SUM(VFE.TotalFacturado) AS MontoFacturado
 
 FROM view_FacturasEncabezado VFE
-	GROUP BY VFE.ClienteID, VFE.NombreCliente, YEAR(VFE.FechaFactura);
+	GROUP BY VFE.ClienteID, VFE.NombreCliente, VFE.Sucursal, YEAR(VFE.FechaFactura);
 
 GO
 
 
--- >> Los 5 proveedores con mas pedidos por aÒo.
+-- >> Los 5 proveedores con mas pedidos por a√±o.
 CREATE VIEW view_OrdenesPorProveedorPorAnio AS
 SELECT
 
     PO.SupplierID,
     S.SupplierName,
+	PO.Sucursal,
 	YEAR(po.OrderDate) AS Anio,
 
     COUNT(DISTINCT PO.PurchaseOrderID) AS CantidadOrdenes, -- Hay algunos id repetidos por 
@@ -425,5 +432,5 @@ FROM OrdenesCompra PO
 	JOIN DetalleOrdenesCompra POL ON PO.PurchaseOrderID = POL.PurchaseOrderID
 	JOIN Proveedores S ON PO.SupplierID = S.SupplierID
 
-	GROUP BY  PO.SupplierID, S.SupplierName, YEAR(PO.OrderDate);
+	GROUP BY  PO.SupplierID, S.SupplierName, PO.Sucursal, YEAR(PO.OrderDate);
 GO
