@@ -13,11 +13,8 @@ En esta seccion de analizaran los objetivos alcanzados y los no alcanzados del p
 
 | Objetivos     | Alcanzado       | No alcanzado  |
 |:------------- |:---------------:| -------------:|
-| Estadisticas  | Si              | X             |
-| Clientes      | Si              | X             |
-| Proveedores   | Si              | X             |  
-| Productos     | Si              | X             |
-| Ventas        | Si              | X             |
-| Inventario selects| Si          | X             |
-| Edicion inventario| X           | No alcanzado  |
+| base  | NO              | X             |
+| Cliente      | NO             | X             |
+| Api   | NO              | X             |  
 
+Se alcanzan parcialmente los objetivpos de la base.
